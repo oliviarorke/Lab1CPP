@@ -2,7 +2,7 @@
  * lab.cpp
  *
  *  Created on: Aug 29, 2019
- *      Author: Dell PC
+ *      Authors: Michelle D'Souza, Olivia Rorke, Raj Trivedi
  */
 
 #include<iostream>
