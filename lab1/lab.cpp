@@ -12,12 +12,15 @@ void printStars();
 bool isPrime(int num);
 void printSum();
 int calcNTerms();
-// void printMultiplicationTables(int num);
+void printMultiplicationTable(int num);
+void printMultiplicationTables();
 int countCollatzConjecture();
 void printLeapYears();
 void printStarsPattern(int n);
-
+void collatzConjecture(int num1, int num2);
 int main(){
+	/***************** Problem 1 test cases **************************/
+	cout << "\t\tProblem 1 test case" << endl;
 	cout << "Hello World!" << endl;
 	printStars();
 
@@ -58,92 +61,66 @@ int main(){
 	printStars();
 
 	/***************** Problem 6 test cases **************************/
-		// cout << "\t\tProblem 6 test cases" << endl;
+	cout << "\t\t Problem 6 test case" << endl;
 
-		// cout << " Testcase # 1 with parameter as an integer 13" << endl;
-		/**
-		 * Multiplication Table of 6
-		 * 6 * 1 = 6
-		 * 6 * 2 = 12
-		 * 6 * 3 = 18
-		 * 6 * 4 = 24
-		 * 6 * 5 = 30
-		 * 6 * 6 = 36
-		 * 6 * 7 = 42
-		 * 6 * 8 = 48
-		 * 6 * 9 = 54
-		 * 6 * 10 = 60
-		 *
-		 * Multiplication Table of 13
-		 * 13 * 1 = 13
-		 * 13 * 2 = 26
-		 * 13 * 3 = 39
-		 * 13 * 4 = 52
-		 * 13 * 5 = 65
-		 * 13 * 6 = 78
-		 * 13 * 7 = 91
-		 * 13 * 8 = 104
-		 * 13 * 9 = 117
-		 * 13 * 10 = 130
-		 */
-		// printMultiplicationTables(13);
+	/** Multiplication table of 2 is
+	 *
+	 * 2 * 1 = 2
+	 * 2 * 2 = 4
+	 * 2 * 3 = 6
+	 * 2 * 4 = 8
+	 * 2 * 5 = 10
+	 * 2 * 6 = 12
+	 * 2 * 7 = 14
+	 * 2 * 8 = 16
+	 * 2 * 9 = 18
+	 * 2 * 10 = 20
+	 * 2 * 11 = 22
+	 * 2 * 12 = 24
+	 *
+	 */
+	printMultiplicationTable(2);
 
-		// cout << " Testcase # 2 with parameter as an integer 14" << endl;
-		/**
-		 * Multiplication Table of 6
-		 * 6 * 1 = 6
-		 * 6 * 2 = 12
-		 * 6 * 3 = 18
-		 * 6 * 4 = 24
-		 * 6 * 5 = 30
-		 * 6 * 6 = 36
-		 * 6 * 7 = 42
-		 * 6 * 8 = 48
-		 * 6 * 9 = 54
-	     * 6 * 10 = 60
-	     *
-		 * Multiplication Table of 14
-		 * 14 * 1 = 14
-		 * 14 * 2 = 28
-		 * 14 * 3 = 42
-		 * 14 * 4 = 56
-		 * 14 * 5 = 70
-		 * 14 * 6 = 84
-		 * 14 * 7 = 98
-		 * 14 * 8 = 112
-		 * 14 * 9 = 126
-		 * 14 * 10 = 140
-		 */
-		// printMultiplicationTables(14);
+	/** Multiplication table of 5 is
+	 *
+	 * 5 * 1 = 5
+	 * 5 * 2 = 10
+	 * 5 * 3 = 15
+	 * 5 * 4 = 20
+	 * 5 * 5 = 25
+	 * 5 * 6 = 30
+	 * 5 * 7 = 35
+	 * 5 * 8 = 40
+	 * 5 * 9 = 45
+	 * 5 * 10 = 50
+	 * 5 * 11 = 55
+	 * 5 * 12 = 60
+	 */
+	printMultiplicationTable(5);
 
-		// cout << " Testcase # 3 with parameter as an integer 15" << endl;
-		/**
-		 * Multiplication Table of 6
-		 * 6 * 1 = 6
-		 * 6 * 2 = 12
-		 * 6 * 3 = 18
-		 * 6 * 4 = 24
-		 * 6 * 5 = 30
-	     * 6 * 6 = 36
-		 * 6 * 7 = 42
-		 * 6 * 8 = 48
-		 * 6 * 9 = 54
-		 * 6 * 10 = 60
-		 *
-		 * Multiplication Table of 14
-		 * 15 * 1 = 15
-		 * 15 * 2 = 30
-		 * 15 * 3 = 45
-		 * 15 * 4 = 60
-		 * 15 * 5 = 75
-	     * 15 * 6 = 90
-		 * 15 * 7 = 105
-	     * 15 * 8 = 120
-		 * 15 * 9 = 135
-		 * 15 * 10 = 150
-		 */
-		// printMultiplicationTables(15);
-		// printStars();
+	/** Multiplication table of 10 is
+	 *
+	 * 10 * 1 = 10
+	 * 10 * 2 = 20
+	 * 10 * 3 = 30
+	 * 10 * 4 = 40
+	 * 10 * 5 = 50
+	 * 10 * 6 = 60
+	 * 10 * 7 = 70
+	 * 10 * 8 = 80
+	 * 10 * 9 = 90
+	 * 10 * 10 = 100
+	 * 10 * 11 = 110
+	 * 10 * 12 = 120
+	 *
+	 */
+	printMultiplicationTable(10);
+	printStars();
+
+	/***************** Problem 7 test cases **************************/
+		cout << "\t\t Problem 7 test case" << endl;
+		printMultiplicationTables();
+		printStars();
 
 	/***************** Problem 8 test case **************************/
 	cout << "\t\t Problem 8 test case" << endl;
@@ -155,7 +132,59 @@ int main(){
 	/***************** Problem 9 test case **************************/
 	cout << "\t\t Problem 9 test case" << endl;
 	printLeapYears();
+	printStars();
 
+	/***************** Problem 10 test case **************************/
+	cout << "\t\t Problem 10 test case" << endl;
+
+	cout << "Star pattern with n = 4" << endl;
+	/**
+	 * *       *
+	 *  *     *
+	 *   *   *
+	 *    * *
+	 *     *
+     *    * *
+	 *   *   *
+	 *  *     *
+	 * *       *
+	 */
+	printStarsPattern(4);
+
+	cout << "Star pattern with n = 5" << endl;
+	/**
+	 * *       *
+	 *  *     *
+	 *   *   *
+	 *    * *
+	 *     *
+	 *    * *
+	 *   *   *
+	 *  *     *
+	 * *       *
+	 */
+	printStarsPattern(5);
+
+	cout << "Star pattern with n = 6" << endl;
+	/**
+	 * *         *
+	 *  *       *
+	 *   *     *
+	 *    *   *
+	 *     * *
+	 *      *
+	 *     * *
+	 *    *   *
+	 *   *     *
+	 *  *       *
+	 * *         *
+	 */
+	printStarsPattern(6);
+	printStars();
+
+	/***************** Problem 11 test case **************************/
+
+	collatzConjecture(3,9);
 	return 0;
 }
 
@@ -200,24 +229,24 @@ int calcNTerms(){
 	return n;
 }
 
-/**
-void printMultiplicationTables(int num){
-	cout << "Multiplication table of 6" << endl;
 
-	for(int i = 1; i <= 10; i++){
-		cout << 6 << " * " << i << " = " << (6*i) << endl;
+void printMultiplicationTable(int num){
+	cout << "Multiplication table of " << num << " is " << endl;
+
+	for(int i = 1; i <= 12; i++){
+		cout << num << " * " << i << " = " << (num * i) << endl;
 	}
 
-	cout << endl;
-	cout << "Multiplication table of " << num << endl;
-
-	for(int i = 1; i <= 10; i++){
-		cout << num << " * " << i << " = " << (num*i) << endl;
-	}
 	cout << endl;
 
 }
-**/
+
+void printMultiplicationTables(){
+	for(int i = 1; i <= 12; i++){
+		printMultiplicationTable(i);
+	}
+}
+
 
 int countCollatzConjecture(){
 	int num;
@@ -274,9 +303,106 @@ void printLeapYears(){
 }
 
 void printStarsPattern(int n){
+
 	if(n % 2 == 0){
 		n = n + 1;
 	}
 
+	//Beginning space refers to spaces before first star
+	int beginningSpace = 1;
 
+	//Middle space refers to spaces between two stars
+	int middleSpace = (n * 2) - 2;
+
+	//Ending space refers to spaces after second star
+	int endingSpace = 0;
+
+	for(int i = 0; i < n; i++){
+		for(int spaces = 0; spaces < beginningSpace; spaces++){
+			cout << " ";
+		}
+
+		if(i < n - 1){
+			cout << "*";
+		}
+
+		else{
+			cout << " * ";
+		}
+
+		for(int spaces = 0; spaces < middleSpace; spaces++){
+			cout << " ";
+		}
+
+		if(i < n - 1){
+			cout << "*";
+		}
+
+		for(int spaces = 0; spaces < endingSpace; spaces++){
+			cout << " ";
+		}
+
+		beginningSpace++;
+		middleSpace -= 2;
+		endingSpace++;
+		cout << endl;
+	}
+
+	beginningSpace = beginningSpace - 2;
+	middleSpace = 2;
+	endingSpace = endingSpace - 1;
+
+	for(int i = n; i < (n * 2) - 1; i++){
+		for(int spaces = 0; spaces < beginningSpace; spaces++){
+			cout << " ";
+		}
+
+		cout << "*";
+
+		for(int spaces = 0; spaces < middleSpace; spaces++){
+			cout << " ";
+		}
+
+		cout << "*";
+
+		for(int spaces = 0; spaces < endingSpace; spaces++){
+			cout << " ";
+		}
+
+		beginningSpace -= 1;
+		middleSpace += 2;
+		endingSpace -= 1;
+		cout << endl;
+	}
+
+	cout << endl;
+	cout << endl;
+
+}
+
+void collatzConjecture(int num1, int num2){
+	int i;
+	for(i = num1 ; i < num2; i++){
+		cout << i << endl;
+
+		while(i != 1){
+			if(i % 2 == 0){
+				i = i / 2;
+			}
+
+			else{
+				i = (i * 3) + 1;
+			}
+
+			i++;
+		}
+
+		if(i == 1){
+			cout << "Collatz Conjecture is still working..." << endl;
+		}
+
+		else{
+			cout << "Collatz Conjecture is not working..." << endl;
+		}
+	}
 }
