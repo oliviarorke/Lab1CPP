@@ -280,3 +280,31 @@ void printStarsPattern(int n){
 
 
 }
+
+//problem 11
+
+int collatzfunc2() {
+
+	int smallNum;
+	int largeNum;
+	int count = 0;
+
+	cout << " Enter 2 different natural positive numbers: ";
+	cin >> smallNum;
+	cin >> largeNum;
+	cout << endl;
+
+	while(smallNum <= largeNum){
+		for (int x=smallNum, outputLoop; x<=largeNum; x++) {
+			outputLoop = countCollatzConjecture(x);
+			if (outputLoop == 1) {
+
+				cout << "Collatz Conjecture is still working" << endl;
+			}
+		}
+	}
+
+	return count;
+}
+
+
