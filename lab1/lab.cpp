@@ -273,10 +273,21 @@ void printLeapYears(){
 	}
 }
 
-void printStarsPattern(int n){
-	if(n % 2 == 0){
-		n = n + 1;
+void printStarsPattern(int s){
+	int a = 0;
+	for (int printer=0; printer<s && s%2==0; printer++) {
+		if (s%2 == 0) {
+			s++;
+		}
+		for (int x=0; printer<=(s-1); x++) {
+			cout << "*";
+			cout << "\t";
+		}
+		for (a = ((s-printer)*2); a>1; a--) {
+			cout << "\t";
+			cout << "*" << endl;
+		}
 	}
 
-
+	return 0;
 }
