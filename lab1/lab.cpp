@@ -2,7 +2,9 @@
  * lab.cpp
  *
  *  Created on: Aug 29, 2019
- *      Author: Dell PC
+ *      Author: Raj Trivedi, Michele D'Souza, Olivia
+ *
+ *  This file contains 10 problems that introduces us to the basic notion of c++
  */
 
 #include<iostream>
@@ -18,6 +20,7 @@ int countCollatzConjecture();
 void printLeapYears();
 void printStarsPattern(int n);
 void collatzConjecture(int num1, int num2);
+
 int main(){
 	/***************** Problem 1 test cases **************************/
 	cout << "\t\tProblem 1 test case" << endl;
@@ -183,16 +186,68 @@ int main(){
 	printStars();
 
 	/***************** Problem 11 test case **************************/
+	cout << "\t\tProblem 11 test case" << endl;
 
+	/**
+	 * 3
+	 * Collatz Conjecture is still working...
+	 * 4
+	 * Collatz Conjecture is still working...
+	 * 5
+	 * Collatz Conjecture is still working...
+	 * 6
+	 * Collatz Conjecture is still working...
+	 * 7
+	 * Collatz Conjecture is still working...
+	 * 8
+	 * Collatz Conjecture is still working...
+	*/
+	cout << "\t\tFirst number is 3 and second number is 9" << endl;
 	collatzConjecture(3,9);
+
+	/**
+	 * 2
+	 * Collatz Conjecture is still working...
+	 * 3
+	 * Collatz Conjecture is still working...
+	 * 4
+	 * Collatz Conjecture is still working...
+	 */
+	cout << "\t\tFirst number is 2 and second number is 5" << endl;
+	collatzConjecture(2,5);
+
+	/**
+	 * 1
+	 * Collatz Conjecture is still working...
+	 * 2
+	 * Collatz Conjecture is still working...
+	 * 3
+	 * Collatz Conjecture is still working...
+	 * 4
+	 * Collatz Conjecture is still working...
+	 */
+	cout << "\t\tFirst number is 1 and second number is 5" << endl;
+	collatzConjecture(1,5);
+	printStars();
+
 	return 0;
 }
 
 void printStars(){
+	/***
+	 * Method prints stars horizontally
+	 * Parameters: None
+	 * Return type : None
+	 */
 	cout << "************************************************************************" << endl;
 }
 
 bool isPrime(int num){
+	/***
+	 * Method determines whether given input parameter is prime or not
+	 * Parameters: an integer
+	 * Return type : Boolean
+	 */
 	int counter = 2;
 	while(counter < num){
 		if(num % counter == 0){
@@ -205,6 +260,11 @@ bool isPrime(int num){
 }
 
 void printSum(){
+	/***
+	 * Method prints sum from 1 to 300 and displays total after every 20 terms
+	 * Parameters: None
+	 * Return type: None
+	 */
 	int sum = 0;
 
 	for(int i = 1; i <= 300; i++){
@@ -216,6 +276,12 @@ void printSum(){
 }
 
 int calcNTerms(){
+	/***
+	 * Method calculates number of terms it takes for sum to exceed 100,000
+	 * Parameters: None
+	 * Return type: None
+	 *
+	 */
 	int n = 1;
 	int sum = 0;
 
@@ -231,6 +297,11 @@ int calcNTerms(){
 
 
 void printMultiplicationTable(int num){
+	/***
+	 * Method prints multiplication table for given input parameter integer from 1-12
+	 * Parameters: num an integer
+	 * Return type: None
+	 */
 	cout << "Multiplication table of " << num << " is " << endl;
 
 	for(int i = 1; i <= 12; i++){
@@ -242,6 +313,11 @@ void printMultiplicationTable(int num){
 }
 
 void printMultiplicationTables(){
+	/***
+	 * Method prints multiplication tables for all numbers from 1-12 using function from Problem 6
+	 * Parameters: None
+	 * Return type: None
+	 */
 	for(int i = 1; i <= 12; i++){
 		printMultiplicationTable(i);
 	}
@@ -249,6 +325,11 @@ void printMultiplicationTables(){
 
 
 int countCollatzConjecture(){
+	/***
+	 * Method counts how many times Collatz Conjecture has to loop through for user input integer to reach 1
+	 * Parameters: None
+	 * Return type: Integer
+	 */
 	int num;
 	int count = 0;
 
@@ -281,6 +362,11 @@ int countCollatzConjecture(){
 }
 
 void printLeapYears(){
+	/***
+	 * Method prints leap years from 2017 up until next 400 years
+	 * Parameters: None
+	 * Return type: None
+	 */
 	cout << "Leap years from 2017 up until next 400 years are: " << endl;
 
 	for(int year = 2017; year <= 2417;){
@@ -303,6 +389,11 @@ void printLeapYears(){
 }
 
 void printStarsPattern(int n){
+	/***
+	 * Method prints pattern of stars given an input parameter integer
+	 * Parameters: n an integer
+	 * Return type: None
+	 */
 
 	if(n % 2 == 0){
 		n = n + 1;
@@ -381,8 +472,17 @@ void printStarsPattern(int n){
 }
 
 void collatzConjecture(int num1, int num2){
+	/***
+	 * Method implements Collatz Conjecture for every numbers between given two input parameters integers
+	 * Parameters: num1 first integer
+	 *             num2 second integer
+	 *
+	 * Return type: None
+	 */
+
 	int i;
-	for(i = num1 ; i < num2; i++){
+	int j = 1;
+	for(i = num1 ; i < num2;){
 		cout << i << endl;
 
 		while(i != 1){
@@ -393,8 +493,6 @@ void collatzConjecture(int num1, int num2){
 			else{
 				i = (i * 3) + 1;
 			}
-
-			i++;
 		}
 
 		if(i == 1){
@@ -404,5 +502,10 @@ void collatzConjecture(int num1, int num2){
 		else{
 			cout << "Collatz Conjecture is not working..." << endl;
 		}
+
+		i = num1 + j;
+		j++;
 	}
+
+	cout << endl;
 }
