@@ -14,7 +14,16 @@ int getWeightedAverage(int center[],int windowSize);
 
 int main(){
 	int arr[] = {3,8,2,5,1,4,6,0,2};
+
+	cout << "Before hanning window: ";
+
+	for(int i = 0; i < 9; i++){
+		cout << arr[i] << " ";
+	}
+
 	int *newArr = hanningWindow(arr,9,5);
+
+	cout << "After hanning window: ";
 
 	for(int i = 0; i < 9; i++){
 		cout << newArr[i] << " ";
