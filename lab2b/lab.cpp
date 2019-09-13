@@ -25,6 +25,16 @@ int main(){
 }
 
 int getWeightedAverage(int center[],int windowSize){
+	/***
+	 * Method weights the value appropriately using hanning window
+	 * and returns weighted averaged value
+	 *
+	 * Parameters: center; an address of the first value in an array
+	 *             windowSize; an odd integer
+	 *
+	 * Return type: Integer
+	 */
+
 	int count = 0;
 	int windowRadius = windowSize / 2;
 	center -= windowRadius;
@@ -53,10 +63,11 @@ int getWeightedAverage(int center[],int windowSize){
 }
 int *hanningWindow(int arr[],int arrSize, int windowSize){
 	/***
-	 * Method weights the value in an array as a given parameter using hanning window and
-	 * also finds average value
+	 * Method weights the value in an array getAveragedValue() function and
+	 * returns new array on the heap that is filtered
 	 *
 	 * Parameters: arr; address of the first value in the array
+	 *             arrSize: size of an array
 	 *             windowSize; an odd natural integer
 	 *
 	 * Return type: Address of an Integer(Pointer to Integer)
