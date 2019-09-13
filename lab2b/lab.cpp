@@ -6,7 +6,14 @@
  */
 
 
+//Problem 5a
 
+void arrayPrint(int arr[], int length) {
+	for (int x=0; x<length; x++) {
+		cout << arr[x] << ", ";
+	}
+	cout << endl;
+}
 
 
 
