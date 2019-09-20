@@ -1,0 +1,229 @@
+//
+//  main.cpp
+//  lab3question2
+//
+//  Created by Livs  on 9/18/19.
+//  Copyright © 2019 Livs . All rights reserved.
+//
+
+#include <iostream>
+
+using namespace std;
+
+class HanningWindow{
+    //Properties
+    int windowSize;
+    int arraySize;
+    int* originalArray = new int[arraySize];
+    int* filteredArray = new int[arraySize];
+    int origMax;
+    int origMin;
+    int filMax;
+    int filMin;
+    
+public:
+    HanningWindow(int origArr[], int arrSize, int filArr[], int winSize);
+    int getWeightedAverage(int center[]);
+    int* hanningWindow(int arr[], int arrSize);
+    void graphPrint(bool arrType);
+    void getFilteredArray();
+    void getHighAndLow();
+    void changeWindow(int x);
+    void arrayPrint(bool arrType);
+};
+
+HanningWindow::HanningWindow(int origArr[], int arrSize, int filArr[], int winSize){
+    arraySize = arrSize;
+    originalArray = origArr;
+    filteredArray = filArr;
+    windowSize = winSize;
+    getHighAndLow();
+}
+
+//Sets the high and low values from the original array to the origmax and origmin variables and filtered to filmin, filmax
+void HanningWindow::getHighAndLow(){
+    origMax = -100;
+    origMin = 100;
+    
+    for(int i = 0; i < arraySize; i++){
+        if(originalArray[i] > origMax){
+            origMax = originalArray[i];
+        }
+        if(originalArray[i] < origMin){
+            origMin = originalArray[i];
+        }
+    }
+    
+    filMax = -100;
+    filMin = 100;
+    
+    for(int i = 0; i < arraySize; i++){
+        if(filteredArray[i] > filMax){
+            filMax = filteredArray[i];
+        }
+        if(filteredArray[i] < filMin){
+            filMin = filteredArray[i];
+        }
+    }
+}
+
+//Changes the window Size to the specified parameter supplied
+void HanningWindow::changeWindow(int x){
+    if(x % 2 == 0){
+        x--;
+    }
+    windowSize = x;
+    getFilteredArray();
+}
+
+//Returns the weighted average of a given array within a supplied window, weight increases by 1 until the center of the window is reached
+int HanningWindow::getWeightedAverage(int center[]){
+    //Determine the window radius given the window size
+    int windowRadius = windowSize / 2;
+    //Initialize the weighting
+    int weighting = 1;
+    //Initialize the sum
+    int sum = 0;
+    
+    //Increment through the array within the bounds of the window, summing each value
+    for(int i = 0; i < windowSize ; i++){
+        sum += center[i] * weighting; //Multiply the value by the current weight (highest at center of window)
+        
+        //Adjust the weighting - increment up if current index is less than the radius value, down if greater
+        if(i < windowRadius){
+            weighting++;
+        }else {
+            weighting--;
+        }
+    }
+    
+    //Return the average across the window
+    return sum / windowSize;
+    
+}
+
+//Updates filtered array to a weighted averaged version of a given array with a specified window size
+void HanningWindow::getFilteredArray(){
+    //Determine the radius of the window given the size
+    int windowRadius = windowSize / 2;
+    
+    //Increment through the array, calling getWeightedAverage when possible to construct the weighted array
+    for(int i = 0; i < arraySize; i++){
+        if(i - windowRadius >= 0 && i + windowRadius <= arraySize - 1){
+            filteredArray[i] = getWeightedAverage(&originalArray[i-windowRadius]);
+        }else{
+            filteredArray[i] = 0;
+        }
+    }
+    
+    getHighAndLow();
+}
+
+//Prints the graph of an array
+void HanningWindow::graphPrint(bool arrType) {
+    //Output an * at each occurence of a value within the filtered array
+    if(arrType == true){
+        for (int var = filMax; var >= filMin; var--) {
+            cout << var << ":";
+            for (int x=0; x < arraySize; x++) {
+                if (filteredArray[x] == var) {
+                    cout <<"*";
+                }
+                else {
+                    cout << " ";
+                }
+            }
+            cout << endl;
+        }
+    }
+    
+    //Output an * at each occurence of a value within the original array
+    if(arrType == false){
+        for (int var = origMax; var >= origMin; var--) {
+            cout << var << ":";
+            for (int x=0; x < arraySize; x++) {
+                if (originalArray[x] == var) {
+                    cout <<"*";
+                }else {
+                    cout << " ";
+                }
+            }
+            cout << endl;
+        }
+    }
+    
+}
+
+//Displays a comma delineated list of values in a supplied array
+void HanningWindow::arrayPrint(bool arrType) {
+    if(arrType == false){
+        for (int x = 0; x < arraySize; x++) {
+            cout << originalArray[x] << ", ";
+        }
+        cout << endl;
+    }
+    
+    if(arrType == true){
+        for (int x = 0; x < arraySize; x++) {
+            cout << filteredArray[x] << ", ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    //Create 2 arrays of the same size
+    int array1[15] = {2, 5, 8, 2, 9, 3, 4, 5, 1, 6, 3, 3, 5, 4, 5};
+    int array2[15] = {3, 9, 7, 3, 5, 2, 1, 6, 8, 3, 5, 5, 8, 2, 4};
+    
+    //Create a new HanningWindow object with the 2 arrays
+    HanningWindow han(array1, 15, array2, 3);
+    
+    //Create a filtered array
+    han.getFilteredArray();
+    
+    //Print the original array
+    cout << "Original Array:" << endl;
+    han.arrayPrint(false);
+    cout << endl;
+    
+    //Print the filtered array
+    cout << "Filtered Array:" << endl;
+    han.arrayPrint(true);
+    cout << endl;
+    
+    //Graph the original array
+    cout << "Original Array:" << endl;
+    han.graphPrint(false);
+    cout << endl;
+
+    //Graph the filtered array
+    cout << "Filtered Array:" << endl;
+    han.graphPrint(true);
+    cout << endl;
+
+    //Change window size
+    han.changeWindow(5);
+    
+    //Print the original array
+    cout << "Original Array:" << endl;
+    han.arrayPrint(false);
+    cout << endl;
+
+    //Print the filtered array
+    cout << "Filtered Array:" << endl;
+    han.arrayPrint(true);
+    cout << endl;
+
+    //Graph the original array
+    cout << "Original Array:" << endl;
+    han.graphPrint(false);
+    cout << endl;
+
+    //Graph the filtered array
+    cout << "Filtered Array:" << endl;
+    han.graphPrint(true);
+    cout << endl;
+
+    return 0;
+}
