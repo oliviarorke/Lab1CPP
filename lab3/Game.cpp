@@ -38,6 +38,20 @@ void Game::printBoard(){
 	}
 }
 
+bool Game::boardFull(){
+
+	for(int i = 0; i < 3; i++){
+
+		for(int j = 0; j < 3; j++){
+
+			if(board[i][j] == '_'){
+				return false;
+			}
+
+		}
+	}
+	return true;
+}
 
 Game::~Game(){
 	for(int i = 0; i < 3; i++){
@@ -47,3 +61,4 @@ Game::~Game(){
 	delete [] board;
 	cout << "board destroyed!!" << endl;
 }
+
